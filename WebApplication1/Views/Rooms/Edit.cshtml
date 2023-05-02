@@ -1,0 +1,44 @@
+﻿@using Hotels.Application.DTO.Response;
+@model DTORoomGet
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    .input {
+        margin-bottom: 15px;
+    }
+</style>
+
+<h1>Edit Room</h1>
+<br />
+<br />
+
+@using (Html.BeginForm("Edit", "Rooms", FormMethod.Post))
+{
+    @Html.HiddenFor(r => r.Id)
+
+    <div class="row input col-md-12">
+        <div class="col-md-2">
+            @Html.LabelFor(r => r.Name)
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(r => r.Name, "", new { @class = "form-comtrol col-md-6" })
+            @Html.ValidationMessageFor(r => r.Name, null, new { @class = "alert-danger" })
+        </div>
+    </div>
+    <div class="row input col-md-12">
+        <div class="col-md-2">
+            @Html.LabelFor(r => r.MaxGuests)
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(r => r.MaxGuests, new { htmlAttributes = new { @type = "number"} })
+            @Html.ValidationMessageFor(r => r.MaxGuests, null, new { @class = "alert-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(r => r.HotelId)
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
+

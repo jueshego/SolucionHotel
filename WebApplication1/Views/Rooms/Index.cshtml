@@ -1,0 +1,42 @@
+﻿@using Hotels.Application.DTO.Response;
+@model List<DTORoomGet>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Room List</h1>
+<td>@Html.ActionLink("New Room", "Create", "Rooms", new { hotelId = ViewData["hotelId"] }, new { @class = "btn btn-primary", @style = "float:right" })</td>
+
+@if (Model.Count > 0)
+{
+    <h3>Hotel @Model.FirstOrDefault().Hotel.Name All Rooms</h3>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(m => m.FirstOrDefault().Name)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.FirstOrDefault().MaxGuests)</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td scope="row" onclick="selectRow(this)">@Html.DisplayFor(m => item.Name)</td>
+                <td>@Html.DisplayFor(m => item.MaxGuests)</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Rooms", new {  Id = item.Id })</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Rooms", new { Id = item.Id, hotelId = item.HotelId })</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>No Rooms</h3>
+}
+
+
+

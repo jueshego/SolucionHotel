@@ -1,0 +1,53 @@
+﻿@using Hotels.Application.DTO.Response;
+@model List<DTOHotelGet>;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Hotels List</h1>
+<a href="~/Hotels/Create" type="button" style="float:right" class="btn btn-primary">New Hotel</a>
+
+@if (Model.Count > 0)
+{
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(m => m.FirstOrDefault().Name)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.FirstOrDefault().Stars)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.FirstOrDefault().Address)</th>
+            <th scope="col">@Html.DisplayNameFor(m => m.FirstOrDefault().PhoneNumber)</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach(var item in Model)
+        {
+        <tr>
+          <td scope="row" onclick="selectRow(this)">@Html.DisplayFor(m => item.Name)</td>
+          <td>@Html.DisplayFor(m => item.Stars)</td>
+          <td>@Html.DisplayFor(m => item.Address)</td>
+          <td>@Html.DisplayFor(m => item.PhoneNumber)</td>
+          <td>@Html.ActionLink("Rooms", "Index", "Rooms", new { hotelId = item.Id }, new { @class = "btn btn-secondary"})</td>
+          <td>@Html.ActionLink("Edit", "Edit", "Hotels", new {  Id = item.Id })</td>
+          <td>@Html.ActionLink("Delete", "Delete", "Hotels", new { Id = item.Id })</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+}
+else
+{
+    <br />
+    <h3>No Hotels</h3>
+}
+
+
+<script>
+    function selectRow(item) {
+        console.log(item);
+    }
+</script>
+
+

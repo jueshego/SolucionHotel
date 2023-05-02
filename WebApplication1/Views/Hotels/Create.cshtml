@@ -1,0 +1,57 @@
+﻿@using Hotels.Application.DTO.Request;
+@model DTOHotelNew 
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .input {
+        margin-bottom: 15px;
+    }
+</style>
+
+<h1>New Hotel</h1>
+<br />
+<br />
+
+@using (Html.BeginForm("Create", "Hotels", FormMethod.Post))
+{
+    <div class="row input col-md-12">
+        <div class="col-md-2">
+            @Html.LabelFor(h => h.Name)
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(h => h.Name, "", new { @class = "form-comtrol col-md-6" })
+            @Html.ValidationMessageFor(h => h.Name, null, new { @class = "alert-danger" })
+        </div>
+    </div>
+    <div class="row input col-md-12">
+        <div class="col-md-2">
+            @Html.LabelFor(h => h.Stars)
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(h => h.Stars, new { htmlAttributes = new { @type = "number"} })
+            @Html.ValidationMessageFor(h => h.Stars, null, new { @class = "alert-danger" })
+        </div>
+    </div>
+    <div class="row input col-md-12">
+        <div class="col-md-2">
+            @Html.LabelFor(h => h.Address)
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(h => h.Address, "", new { @class = "form-comtrol col-md-6" })
+            @Html.ValidationMessageFor(h => h.Address, null, new { @class = "alert-danger" })
+        </div>
+    </div>
+    <div class="row input col-md-12">
+        <div class="col-md-2">
+            @Html.LabelFor(h => h.PhoneNumber)
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(h => h.PhoneNumber, "", new { @class = "form-comtrol col-md-6" })
+            @Html.ValidationMessageFor(h => h.PhoneNumber, null, new { @class = "alert-danger" })
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+}
